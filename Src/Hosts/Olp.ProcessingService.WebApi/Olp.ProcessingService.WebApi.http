@@ -1,0 +1,6 @@
+@Olp.ProcessingService.WebApi_HostAddress = http://localhost:5063
+
+GET {{Olp.ProcessingService.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
