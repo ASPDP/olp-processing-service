@@ -45,6 +45,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{FB4B6442-698E-4715-AC4B-0DFD297925B1}"
+	ProjectSection(SolutionItems) = preProject
+		Tools\.env.docker = Tools\.env.docker
+		Tools\docker-compose.yml = Tools\docker-compose.yml
+		Tools\readme.md = Tools\readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pgdata", "pgdata", "{8EE8DA5B-3F55-436D-A8D5-D067901B1E79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +116,8 @@ Global
 		{A4609F5A-9A2D-4C52-BAD1-C72E53A73C00} = {423C37AD-88FA-40EC-8FEF-6CFF46A9F789}
 		{51AC19C3-8006-44C6-A63C-177D6CDA4B36} = {423C37AD-88FA-40EC-8FEF-6CFF46A9F789}
 		{340D6ABA-93D9-4829-BE41-CBA71FD67D53} = {55A2C1D3-BC48-4BEF-B45C-3A58FA79B84C}
+		{FB4B6442-698E-4715-AC4B-0DFD297925B1} = {15143DB8-4E26-47A1-933D-14DF05F4C34F}
+		{8EE8DA5B-3F55-436D-A8D5-D067901B1E79} = {FB4B6442-698E-4715-AC4B-0DFD297925B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99A2ABEB-0F58-426D-8CFF-9F9700AF4C41}
