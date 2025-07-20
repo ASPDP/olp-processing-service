@@ -268,3 +268,9 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 # tools/
+
+
+Tools/pgdata
+Tools/rabbitmq_data
+
+appsettings.*.json

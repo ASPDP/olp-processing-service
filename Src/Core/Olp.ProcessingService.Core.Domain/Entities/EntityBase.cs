@@ -9,7 +9,7 @@ namespace Olp.ProcessingService.Core.Domain.Entities
         /// <summary>
         /// Идентификатор.
         /// </summary>
-        public required TId Id { get; set; }
+        public TId? Id { get; set; } = default;
 
         #endregion 
     }

@@ -9,6 +9,6 @@
         /// <summary>
         /// Идентификатор.
         /// </summary>
-        TId Id { get; set; }
+        TId? Id { get; set; }
     }
 }

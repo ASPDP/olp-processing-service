@@ -1,17 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.7" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Olp.ProcessingService.Infrastructure.EntityFramework\Olp.ProcessingService.Infrastructure.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Olp.RabbitMqTools.Infrastructure.EventBus\Olp.RabbitMqTools.Infrastructure.EventBus.csproj" />
     <ProjectReference Include="..\..\Repositories\Olp.ProcessingService.Repositories.Abstractions\Olp.ProcessingService.Repositories.Abstractions.csproj" />
     <ProjectReference Include="..\..\Repositories\Olp.ProcessingService.Repositories.Implementation\Olp.ProcessingService.Repositories.Implementation.csproj" />
     <ProjectReference Include="..\..\Services\Olp.ProcessingService.Services.Abstractions\Olp.ProcessingService.Services.Abstractions.csproj" />
