@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Olp.ProcessingService.Core.Contracts.Commands;
 
-namespace Olp.ProcessingService.Services.Abstractions
+namespace Olp.ProcessingService.Services.Abstractions;
+
+public interface IOperationService
 {
-    public interface IOperationService
-    {
-    }
+    Task<BaseCommandResult> ExecCommandAsync(Guid userId, BaseCommand commandModel);
 }

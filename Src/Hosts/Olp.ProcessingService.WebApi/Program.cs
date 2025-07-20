@@ -1,8 +1,11 @@
-using Microsoft.Extensions.Configuration;
-using Olp.ProcessingService.WebApi.Settings;
-
+using Asp.Versioning;
 using Olp.ProcessingService.Infrastructure.EntityFramework.Extensions;
+using Olp.ProcessingService.Services.Abstractions.Clients;
+using Olp.ProcessingService.Services.Implementation.Clients;
+using Olp.ProcessingService.WebApi.EventBus;
 using Olp.ProcessingService.WebApi.Extensions;
+using Olp.RabbitMqTools.Infrastructure.EventBus.Extensions;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +19,7 @@ builder.Services
 
 builder.Services
     .AddPostgresContext(appSettings.DbSettings)
+    .AddEventBus(appSettings.RabbitMqOptions, KnownEventHandlers.Types)
     .AddRepositories()
     .AddServices();
 
@@ -25,6 +29,17 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddApiVersioning(config =>
+{
+    config.ApiVersionReader = new HeaderApiVersionReader("api-version");
+    config.DefaultApiVersion = new ApiVersion(1, 0);
+    config.AssumeDefaultVersionWhenUnspecified = true;
+});
+
+builder.Services.AddHttpClient<IProposalServiceClient, ProposalServiceClient>(client =>
+{
+    client.BaseAddress = appSettings.ProposalServiceSettings.BaseAddress();
+});
 
 var app = builder.Build();
 
@@ -39,9 +54,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
+
+app.UseEventBus();
 
 app.Run();

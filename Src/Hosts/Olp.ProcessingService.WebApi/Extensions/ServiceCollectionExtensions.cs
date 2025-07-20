@@ -11,13 +11,13 @@ public static class ServiceCollectionExtensions
     {
         return services
             .AddTransient<IOperationRepository, OperationRepository>()
-            .AddTransient<IOperationStepRepository, OperationStepRepository>();
+            .AddTransient<IOperationStepRepository, OperationStepRepository>()
+            .AddTransient<IUnitOfWork, UnitOfWork>();
     }
 
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
         return services
-            .AddTransient<IOperationService, OperationService>()
-            .AddTransient<IOperationStepService, OperationStepService>();
+            .AddTransient<IOperationService, OperationService>();
     }
 }
