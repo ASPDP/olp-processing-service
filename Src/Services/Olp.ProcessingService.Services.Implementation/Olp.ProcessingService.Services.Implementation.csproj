@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Olp.ProcessingService.Core.Domain\Olp.ProcessingService.Core.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Olp.RabbitMqTools.Infrastructure.EventBus\Olp.RabbitMqTools.Infrastructure.EventBus.csproj" />
     <ProjectReference Include="..\..\Repositories\Olp.ProcessingService.Repositories.Abstractions\Olp.ProcessingService.Repositories.Abstractions.csproj" />
     <ProjectReference Include="..\Olp.ProcessingService.Services.Abstractions\Olp.ProcessingService.Services.Abstractions.csproj" />
   </ItemGroup>

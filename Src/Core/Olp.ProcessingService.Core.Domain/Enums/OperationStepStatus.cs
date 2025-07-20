@@ -9,6 +9,7 @@ namespace Olp.ProcessingService.Core.Domain.Entities
     public enum OperationStepStatus : byte
     {
         Pending,
+        Processing,
         Succeeded,
         Failed,
         Compensated

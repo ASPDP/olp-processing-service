@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Olp.ProcessingService.Core.Domain.Enums;
 
 namespace Olp.ProcessingService.Core.Domain.Entities
 {
@@ -17,6 +16,6 @@ namespace Olp.ProcessingService.Core.Domain.Entities
         public string? ErrorMessage { get; set; }
 
         public Guid OperationId { get; set; }
-        public required Operation Operation { get; set; }
+        public Operation? Operation { get; set; }
     }
 }

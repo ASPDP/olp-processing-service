@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Olp.ProcessingService.Services.Abstractions;
-
-public interface IOperationStepService
+namespace Olp.ProcessingService.Repositories.Implementation
 {
+    internal class EntityRepositoryBase
+    {
+    }
 }
