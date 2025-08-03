@@ -270,7 +270,6 @@ __pycache__/
 # tools/
 
 
-Tools/pgdata
-Tools/rabbitmq_data
+Docker/**/*_data/
 
 appsettings.*.json

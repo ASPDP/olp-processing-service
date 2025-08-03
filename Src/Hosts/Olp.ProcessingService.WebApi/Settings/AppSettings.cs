@@ -1,14 +1,10 @@
-﻿using EventBus.RabbitMQ.Standard.Options;
-
-using Olp.ProcessingService.Infrastructure.EntityFramework.Settings;
+﻿using Olp.Infrastructure.EntityFramework.ProcessingContext.Settings;
 
 
-namespace Olp.ProcessingService.WebApi.Settings
+namespace Olp.ProcessingService.WebApi.Settings;
+
+public class AppSettings
 {
-    public class AppSettings
-    {
-        public required DbSettings DbSettings { get; set; }
-        public required RabbitMqOptions RabbitMqOptions { get; set; }
-        public required ProposalServiceSettings ProposalServiceSettings { get; set; }
-    }
+    public required DbSettings DbSettings { get; set; }
+    public required ProposalServiceSettings ProposalServiceSettings { get; set; }
 }

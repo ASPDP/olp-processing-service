@@ -13,12 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Olp.ProcessingService.Infrastructure.EntityFramework\Olp.ProcessingService.Infrastructure.EntityFramework.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Olp.RabbitMqTools.Infrastructure.EventBus\Olp.RabbitMqTools.Infrastructure.EventBus.csproj" />
-    <ProjectReference Include="..\..\Repositories\Olp.ProcessingService.Repositories.Abstractions\Olp.ProcessingService.Repositories.Abstractions.csproj" />
-    <ProjectReference Include="..\..\Repositories\Olp.ProcessingService.Repositories.Implementation\Olp.ProcessingService.Repositories.Implementation.csproj" />
-    <ProjectReference Include="..\..\Services\Olp.ProcessingService.Services.Abstractions\Olp.ProcessingService.Services.Abstractions.csproj" />
-    <ProjectReference Include="..\..\Services\Olp.ProcessingService.Services.Implementation\Olp.ProcessingService.Services.Implementation.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Olp.Infrastructure.EventBus\Olp.Infrastructure.EventBus.csproj" />
+    <ProjectReference Include="..\..\Repositories\Olp.Repositories.ProcessingAbstractions\Olp.Repositories.ProcessingAbstractions.csproj" />
+    <ProjectReference Include="..\..\Repositories\Olp.Repositories.ProcessingImplementation\Olp.Repositories.ProcessingImplementation.csproj" />
+    <ProjectReference Include="..\..\Services\Olp.Services.ProcessingAbstractions\Olp.Services.ProcessingAbstractions.csproj" />
+    <ProjectReference Include="..\..\Services\Olp.Services.ProcessingImplementation\Olp.Services.ProcessingImplementation.csproj" />
   </ItemGroup>
 
 </Project>

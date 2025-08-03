@@ -1,10 +1,11 @@
 using Asp.Versioning;
-using Olp.ProcessingService.Infrastructure.EntityFramework.Extensions;
-using Olp.ProcessingService.Services.Abstractions.Clients;
-using Olp.ProcessingService.Services.Implementation.Clients;
-using Olp.ProcessingService.WebApi.EventBus;
+
+using Olp.Infrastructure.EventBus.Extensions;
 using Olp.ProcessingService.WebApi.Extensions;
-using Olp.RabbitMqTools.Infrastructure.EventBus.Extensions;
+using Olp.Infrastructure.EntityFramework.ProcessingContext.Extensions;
+using Olp.Services.ProcessingImplementation.EventBus;
+using Olp.Services.ProcessingAbstractions.Clients;
+using Olp.Services.ProcessingImplementation.Clients;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +20,6 @@ builder.Services
 
 builder.Services
     .AddPostgresContext(appSettings.DbSettings)
-    .AddEventBus(appSettings.RabbitMqOptions, KnownEventHandlers.Types)
     .AddRepositories()
     .AddServices();
 
@@ -28,6 +28,10 @@ builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddIntegrationEventHandlers(KnownEventHandlers.Types);
+builder.Services.AddCustomEventBus(builder.Configuration);
+
 builder.Services.AddSwaggerGen();
 builder.Services.AddApiVersioning(config =>
 {
@@ -57,6 +61,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-app.UseEventBus();
+// Подписка на события
+await app.SubscribeToEventsAsync(KnownEventHandlers.Types);
+
 
 app.Run();

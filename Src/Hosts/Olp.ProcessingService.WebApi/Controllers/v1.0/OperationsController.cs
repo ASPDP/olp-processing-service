@@ -1,7 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using Olp.ProcessingService.Core.Contracts.Commands;
-using Olp.ProcessingService.Services.Abstractions;
+using Olp.Core.ProcessingContracts.Commands;
+using Olp.Services.ProcessingAbstractions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,8 +11,7 @@ namespace Olp.ProcessingService.WebApi.Controllers;
 [Route("api/v{version:apiVersion}/[controller]")]
 [ApiController]
 public class OperationsController(
-    IOperationService operationService,
-    IHttpContextAccessor httpContextAccessor
+    IOperationService operationService
 ) : ControllerBase
 {
     // GET: api/<OperationsController>
@@ -31,13 +30,11 @@ public class OperationsController(
 
     // POST api/<OperationsController>
     [HttpPost]
-    public async Task<BaseCommandResult> Post([FromBody] BaseCommand commandModel)
+    public async Task<CommandBaseResult> Post([FromBody] CreateProposalCommand command)
     {
-        var userIdHeader = httpContextAccessor.HttpContext?.Request.Headers["UserId"].FirstOrDefault()
-            ?? throw new InvalidOperationException("Unknown user.");
-        Guid userId = Guid.Parse(userIdHeader);
+        var userId = Guid.NewGuid();
 
-        return await operationService.ExecCommandAsync(userId, commandModel);
+        return await operationService.ExecCommandAsync(userId, command);
     }
 
     // PUT api/<OperationsController>/5

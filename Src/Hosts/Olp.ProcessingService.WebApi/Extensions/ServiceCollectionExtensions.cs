@@ -1,7 +1,9 @@
-﻿using Olp.ProcessingService.Services.Abstractions;
-using Olp.ProcessingService.Services.Implementation;
-using Olp.ProcessingService.Repositories.Abstractions;
+﻿using Olp.ProcessingService.Services.Implementation;
 using Olp.ProcessingService.Repositories.Implementation;
+using Olp.Repositories.ProcessingAbstractions;
+using Olp.Repositories.ProcessingImplementation;
+using Olp.Services.ProcessingAbstractions;
+
 
 namespace Olp.ProcessingService.WebApi.Extensions;
 
