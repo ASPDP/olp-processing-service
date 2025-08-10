@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Olp.Core.ProcessingContracts\Olp.Core.ProcessingContracts.csproj" />
+    <ProjectReference Include="..\..\Core\Olp.Core.ProposalContracts\Olp.Core.ProposalContracts.csproj" />
   </ItemGroup>
 
 </Project>

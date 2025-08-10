@@ -1,9 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using Olp.Core.ProcessingContracts.Commands;
+using Olp.Core.ProcessingContracts.Models;
 using Olp.Services.ProcessingAbstractions;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Olp.ProcessingService.WebApi.Controllers;
 
@@ -11,41 +9,18 @@ namespace Olp.ProcessingService.WebApi.Controllers;
 [Route("api/v{version:apiVersion}/[controller]")]
 [ApiController]
 public class OperationsController(
-    IOperationService operationService
+    IProposalOperationService operationService
 ) : ControllerBase
 {
-    // GET: api/<OperationsController>
-    [HttpGet]
-    public IEnumerable<string> Get()
+    /// <summary>
+    /// Создать заявку.
+    /// </summary>
+    /// <param name="request">Модель создания заявки.</param>
+    /// <returns>Результат создания заявки.</returns>
+    [HttpPost("create-proposal")]
+    public async Task<CreateProposalResult> Post([FromBody] CreateProposalModel model)
     {
-        return new string[] { "value1", "value2" };
-    }
-
-    // GET api/<OperationsController>/5
-    [HttpGet("{id}")]
-    public string Get(int id)
-    {
-        return "value";
-    }
-
-    // POST api/<OperationsController>
-    [HttpPost]
-    public async Task<CommandBaseResult> Post([FromBody] CreateProposalCommand command)
-    {
-        var userId = Guid.NewGuid();
-
-        return await operationService.ExecCommandAsync(userId, command);
-    }
-
-    // PUT api/<OperationsController>/5
-    [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
-    {
-    }
-
-    // DELETE api/<OperationsController>/5
-    [HttpDelete("{id}")]
-    public void Delete(int id)
-    {
+        var userId = Guid.Parse("a3e3f3e7-3e3f-4e3f-8e3f-3e3f3e3f3e3f");
+        return await operationService.CreateProposalAsync(userId, model.Command);
     }
 }

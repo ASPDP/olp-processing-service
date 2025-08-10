@@ -1,8 +1,8 @@
-﻿using Olp.Core.ProcessingContracts.Clients.ProposalServiceClient;
+﻿using Olp.Core.ProposalContracts.ProposalServiceClient;
 
 namespace Olp.Services.ProcessingAbstractions.Clients;
 
 public interface IProposalServiceClient
 {
-    Task<CreateProposalResponse> CreateProposalAsync(CreateProposalRequest request, CancellationToken cancellationToken = default);
+    Task<PrepareProposalResult> CreateProposalAsync(PrepareProposalModel request, CancellationToken cancellationToken = default);
 }

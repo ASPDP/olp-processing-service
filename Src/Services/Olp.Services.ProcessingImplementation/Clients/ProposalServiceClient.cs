@@ -1,4 +1,4 @@
-﻿using Olp.Core.ProcessingContracts.Clients.ProposalServiceClient;
+﻿using Olp.Core.ProposalContracts.ProposalServiceClient;
 using Olp.Services.ProcessingAbstractions.Clients;
 
 
@@ -8,9 +8,11 @@ public class ProposalServiceClient(
     HttpClient httpClient
 ) : IProposalServiceClient
 {
+    HttpClient HttpClient { get; } = httpClient;
+
     #region IProposalServiceClient
 
-    public async Task<CreateProposalResponse> CreateProposalAsync(CreateProposalRequest request, CancellationToken cancellationToken = default)
+    public async Task<PrepareProposalResult> CreateProposalAsync(PrepareProposalModel request, CancellationToken cancellationToken = default)
     {
         //var response = await httpClient.PostAsJsonAsync("/api/v1/Proposals", request, cancellationToken);
         //response.EnsureSuccessStatusCode();
@@ -20,9 +22,8 @@ public class ProposalServiceClient(
         // Dummy
         await Task.CompletedTask;
 
-        return new CreateProposalResponse
+        return new()
         {
-            Action = "Response",
             Command = request.Command,
             OperationStepId = request.OperationStepId,
             Result = new()

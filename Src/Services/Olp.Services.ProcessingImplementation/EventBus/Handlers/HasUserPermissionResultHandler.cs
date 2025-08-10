@@ -14,12 +14,12 @@ public class HasUserPermissionResultHandler(
     {
         try
         {
-            logger.LogInformation($"Event processing started: OperationStepId = {message.OperationStepId}, Actrion = {message.Action}.");
+            logger.LogInformation($"Event processing started: OperationStepId = {message.OperationStepId}, Action = {message.Action}.");
 
             // Event processing stub
             await Task.CompletedTask;
 
-            logger.LogInformation($"Event processing completed: id = OperationStepId = {message.OperationStepId}, Actrion = {message.Action}");
+            logger.LogInformation($"Event processing completed: id = OperationStepId = {message.OperationStepId}, Action = {message.Action}, Success = {message.Result.Success}, HasUserPermission = {message.Result.HasUserPermission}");
         }
         catch (Exception ex)
         {

@@ -1,6 +1,7 @@
 ﻿using EasyNetQ;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Olp.Infrastructure.EventBus.Configuration;
 using Olp.Infrastructure.EventBus.Interfaces;
 using Olp.Infrastructure.EventBus.Settings;
 
@@ -28,6 +29,11 @@ namespace Olp.Infrastructure.EventBus.Extensions
                 ?? throw new InvalidOperationException("Can't get RabbitMQ settings.");
 
             services.AddEasyNetQ(rabbitMQString.Connection).UseSystemTextJson();
+            services.AddSingleton<IConventions>(serviceProvider =>
+            {
+                var typeNameSerializer = serviceProvider.GetRequiredService<ITypeNameSerializer>();
+                return new OlpConventions(typeNameSerializer);
+            });
 
             return services;
         }

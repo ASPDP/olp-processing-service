@@ -1,9 +1,10 @@
 ﻿using EasyNetQ;
 
-using Olp.Core.ProcessingContracts.Clients.ProposalServiceClient;
 using Olp.Core.ProcessingContracts.Commands;
+using Olp.Core.ProcessingContracts.Models;
 using Olp.Core.ProcessingDomain.Entities;
 using Olp.Core.ProcessingDomain.Enums;
+using Olp.Core.ProposalContracts.ProposalServiceClient;
 using Olp.Infrastructure.EventBus.AuthContracts.EventMessages;
 using Olp.Repositories.ProcessingAbstractions;
 using Olp.Services.ProcessingAbstractions;
@@ -12,15 +13,15 @@ using Olp.Services.ProcessingAbstractions.Clients;
 
 namespace Olp.ProcessingService.Services.Implementation;
 
-public class OperationService(
+public class ProposalOperationService(
     IBus bus,
     IProposalServiceClient proposalServiceClient,
     IUnitOfWork unitOfWork
-) : IOperationService
+) : IProposalOperationService
 {
     #region CreateProposal command
 
-    private async Task<CreateProposalCommandResult> CreateProposalAsync(Guid userId, CommandBase command)
+    private async Task<CreateProposalCommandResult> ExecCreateProposalAsync(Guid userId, CreateProposalCommand command)
     {
         return await unitOfWork.ExecInTransactionAsync(async (uow) =>
         {
@@ -43,9 +44,16 @@ public class OperationService(
                 ModifiedAt = DateTime.UtcNow,
             });
 
-            var createProposalResponse = await proposalServiceClient.CreateProposalAsync(new CreateProposalRequest
+            var createProposalResponse = await proposalServiceClient.CreateProposalAsync(new PrepareProposalModel
             {
-                Command = new(),
+                Command = new()
+                {
+                    Params = new()
+                    {
+                        Title = command.Params.Title,
+                        Description = command.Params.Description,
+                    }
+                },
                 OperationStepId = prepareProposalOperationStep.Id ?? throw new InvalidOperationException("Unknown Id of PrepareProposalOperationStep."),
             });
 
@@ -73,8 +81,8 @@ public class OperationService(
                 {
                     Params = new()
                     {
-                        UserId = Guid.Parse("a3e3f3e7-3e3f-4e3f-8e3f-3e3f3e3f3e3f"),
-                        PermissionName = "createProposal"
+                        UserId = userId,
+                        PermissionName = "CreateProposal"
                     }
                 }
             });
@@ -84,6 +92,7 @@ public class OperationService(
 
             return new CreateProposalCommandResult
             {
+                Success = true,
                 Operation = new()
                 {
                     Id = operationId,
@@ -102,22 +111,31 @@ public class OperationService(
 
     #endregion
 
-    #region IOperationService members
+    #region IProposalOperationService implementation
 
-    public async Task<CommandBaseResult> ExecCommandAsync(Guid userId, CommandBase command)
+    public async Task<CreateProposalResult> CreateProposalAsync(Guid userId, CreateProposalCommand command)
     {
-        var result = command.Name switch
+        try
         {
-            string commandName when commandName == KnownCommands.CreateProposal.Name => 
-                await CreateProposalAsync(userId, command),
-            _ => throw new NotSupportedException()
-        };
-
-        return new()
+            var commandResult = await ExecCreateProposalAsync(userId, command);
+            return new()
+            {
+                CommandName = command.Name,
+                CommandResult = commandResult
+            };
+        }
+        catch (Exception ex)
         {
-            Command = command,
-            Result = result
-        };
+            return new()
+            {
+                CommandName = command.Name,
+                CommandResult = new()
+                {
+                    Success = false,
+                    Error = ex.ToString()
+                }
+            };
+        }
     }
 
     #endregion

@@ -1,4 +1,4 @@
-﻿namespace Olp.Core.ProcessingContracts.Proposal;
+﻿namespace Olp.Core.ProposalContracts.Dtos;
 
 public class ProposalDto
 {

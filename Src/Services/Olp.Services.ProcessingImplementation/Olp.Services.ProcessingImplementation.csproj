@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Olp.Core.ProcessingContracts\Olp.Core.ProcessingContracts.csproj" />
     <ProjectReference Include="..\..\Core\Olp.Core.ProcessingDomain\Olp.Core.ProcessingDomain.csproj" />
+    <ProjectReference Include="..\..\Core\Olp.Core.ProposalContracts\Olp.Core.ProposalContracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Olp.Infrastructure.EventBus.AuthContracts\Olp.Infrastructure.EventBus.AuthContracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Olp.Infrastructure.EventBus\Olp.Infrastructure.EventBus.csproj" />
     <ProjectReference Include="..\..\Repositories\Olp.Repositories.ProcessingAbstractions\Olp.Repositories.ProcessingAbstractions.csproj" />

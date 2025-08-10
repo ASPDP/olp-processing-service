@@ -14,9 +14,3 @@ public class HasUserPermissionEventResult : IEventMessage
     public required HasUserPermissionCommand Command { get; set; }
     public required HasUserPermissionCommandResult Result { get; set; }
 }
-
-public class HasUserPermissionCommandResult
-{
-    public bool Success { get; set; }
-    public bool HasUserPermission { get; set; }
-}
