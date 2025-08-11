@@ -1,0 +1,6 @@
+services:
+  olp.processingservice.webapi:
+    image: ${DOCKER_REGISTRY-}olpprocessingservicewebapi
+    build:
+      context: .
+      dockerfile: Src/Hosts/Olp.ProcessingService.WebApi/Dockerfile
