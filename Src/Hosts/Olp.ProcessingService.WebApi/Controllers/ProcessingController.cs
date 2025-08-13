@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Olp.ProcessingService.Core;
+using Olp.Core.ProcessingDomain;
 using Olp.ProcessingService.Core.Domain;
 using Olp.ProcessingService.Core.Domain.Entities;
 using Olp.ProcessingService.Core.Domain.Interfaces;
