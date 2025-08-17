@@ -1,3 +1,11 @@
 # olp.processing-service
 
-Сервис обработки данных для проекта OpenLearningPlace.
+```mermaid
+gitGraph
+  commit id: "Initial commit"
+  branch develop
+  checkout develop
+  commit id: "Feature work"
+  checkout main
+  commit id: "Bug fix"
+  merge develop tag: "Release v1.0"
